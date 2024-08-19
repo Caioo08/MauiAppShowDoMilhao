@@ -4,8 +4,8 @@ namespace MauiAppShowDoMilhao
 {
     public partial class App : Application
     {
-                    List<Pergunta> perguntas_faceis = new()
-        {
+        static List<Pergunta> perguntas_faceis = new()
+                {
                 new Pergunta
                 {
                     Id= 1,
@@ -248,7 +248,7 @@ namespace MauiAppShowDoMilhao
                 },
         };
 
-                    List<Pergunta> perguntas_medias = new()
+        static List<Pergunta> perguntas_medias = new()
                 {
                     new Pergunta
                     {
@@ -509,9 +509,9 @@ namespace MauiAppShowDoMilhao
                             new Alternativa{ Correta=false, Descricao="Carlos Galhardo" },
                         },
                     },
-                };  
-        
-                    List<Pergunta> perguntas_dificeis = new()
+                };
+
+        static List<Pergunta> perguntas_dificeis = new()
                     {
                         new Pergunta
                         {
@@ -774,8 +774,34 @@ namespace MauiAppShowDoMilhao
                         }
                     };
 
+        public static Pergunta getRandomPerguntaFacil()
+        {
+            Random r = new Random();
 
-        
+            int sorteado = r.Next(1, perguntas_faceis.Count);
+
+            return perguntas_faceis[sorteado];
+        }
+
+        public static Pergunta getRandomPerguntaMedia()
+        {
+            Random r = new Random();
+
+            int sorteado = r.Next(21, perguntas_medias.Count);
+
+            return perguntas_medias[sorteado];
+        }
+
+        public static Pergunta getRandomPergundaDificil()
+        {
+            Random r = new Random();
+
+            int sorteado = r.Next(41, perguntas_dificeis.Count);
+
+            return perguntas_dificeis[sorteado];
+        }
+
+
 
         public App()
         {
