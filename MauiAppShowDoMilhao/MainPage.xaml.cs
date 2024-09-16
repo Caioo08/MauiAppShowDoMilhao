@@ -60,11 +60,22 @@ namespace MauiAppShowDoMilhao
             {
                 premio = premio + 1000;
                 this.BindingContext = App.getRandomPerguntaFacil();
+                lbl_nivel.Text = 'Fácil';
             }
             if (pergunta_count > 5 && pergunta_count <= 10)
             {
                 premio = premio + 10000;
                 this.BindingContext = App.getRandomPerguntaMedia();
+                lbl_nivel.Text = 'Médio';
             }
+            if(pergunta_count >10 && pergunta_count <15)
+            {
+                premio = premio + 100000;
+                this.BindingContext= App.getRandomPerguntaDificil();
+                lbl_nivel.Text = 'Difícil';
+            }
+
+            lbl_premio.Text = lbl_premio.ToString("C");
+            lbl_pergunta_numero.Text = pergunta_count.ToString();
 
         }
