@@ -1,4 +1,6 @@
-﻿using MauiAppShowDoMilhao.Models;
+﻿using AVFoundation;
+using MauiAppShowDoMilhao.Models;
+using Plugin.Maui.Audio;
 
 namespace MauiAppShowDoMilhao
 {
@@ -83,7 +85,7 @@ namespace MauiAppShowDoMilhao
             this.BindingContext = App.getRandomPerguntaFacil();
         }
 
-        private void Button_Clicked_Proxima(object sender, EventArgs e)
+        private async void Button_Clicked_Proxima(object sender, EventArgs e)
         {
             string texto_alternativa = "";
 
@@ -112,13 +114,24 @@ namespace MauiAppShowDoMilhao
 
             if (resposta_correta)
             {
-                this.BindingContext = App.getRandomPerguntaFacil();
+                Stream track = FyleSystem.OpenAppPackageFyleAsync("parabens.wav").Result;
+                AVAudioUnitComponentManager.Current.CreatePlayer(track).Play();
 
-                DisplayAlert("Acertou", texto_alternativa, "Próxima");
+                await DisplayAlert("Acertou", texto_alternativa, "OK");
+                pergunta_count++;
+                toca_som;
+                avanca_pergunta();
+                
             }
             else
             {
-                DisplayAlert("Errou!", "burro!", "Tentar Novamente");
+                Stream track = FyleSystem.OpenAppPackageFyleAsync("errou.wav").Result;
+                AVAudioUnitComponentManager.Current.CreatePlayer(track).Play();
+
+                await DisplayAlert("Errou", "Você perdeu", "OK");
+                premio = 0;
+                pergunta_count = 1;
+                avanca_pergunta();
             }
         }
         void avanca_pergunta()
