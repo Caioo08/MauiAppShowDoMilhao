@@ -73,7 +73,7 @@ namespace MauiAppShowDoMilhao
                 case 16:
                     track = "16.wav";
                     break;
-                
+
             }
 
             AudioManager.Current.CreatePlayer(
@@ -121,7 +121,7 @@ namespace MauiAppShowDoMilhao
                 pergunta_count++;
                 toca_som;
                 avanca_pergunta();
-                
+
             }
             else
             {
@@ -159,5 +159,7 @@ namespace MauiAppShowDoMilhao
             lbl_pergunta_numero.Text = pergunta_count.ToString();
 
         }
+    }
+}
 
 
